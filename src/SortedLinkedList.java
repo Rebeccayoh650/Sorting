@@ -138,10 +138,8 @@ public class SortedLinkedList<T extends Comparable<T>> implements SortedList<T>{
         //al.add(1, "For");
         System.out.println("Initial ArrayList " + al);
         try {
-
             System.out.println(al.get(5));
             al.remove(1);
-            //al.remove("Girl");
         }catch (Exception e){
             System.out.println(e);
         }
