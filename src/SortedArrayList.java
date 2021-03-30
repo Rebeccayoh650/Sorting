@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ *this program implemnts sorted arraylist along with its functions add, remove, and get
+ *  a arraylist that sorts element as they are added
+ *
+ * @param <T>
+ */
+
+
 
 public class SortedArrayList<T extends Comparable<T>> implements SortedList<T>{
     protected T[] a;
@@ -16,7 +24,8 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedList<T>{
         size=0;
     }
     //a helper function
-    private void grow_array() //doubles size of array
+    //doubles size of array
+    private void grow_array()
     {
         T [] new_arr = (T[]) new Object[size *= 2];
         for (int i = 0; i < size; i++)
@@ -24,14 +33,12 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedList<T>{
         a = new_arr;
     }
     public void swap(int i, int j) {
-        T temp = a[j];
-        a[j] = a[j+1];
-        a[j+1] = temp;
+        T temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
-    //For( int i = 0; I < list.length; I ++) {
-    //for(int j = 0; j < list.length; j++)
-    //If list.get(j).compareTo(list.get(j+1)) > 0)
-    //Swap items j and j + 1
+    //add function that adds while sorting
+    //checks item by using compareTo
     @Override
     public boolean add(T item) {
         if (size == 0) {
@@ -45,17 +52,17 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedList<T>{
         }
         a[size] = item;
         //sorting
-        for (int i = 0; i < size-1; i++) {
-            for (int j = 0; j < size - i - 1; j++) {
-                if (a[j].compareTo(item) > j+1) {
-                    swap(j, j+1);
-
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size - i-1 ; j++) {
+                if (a[j].compareTo(a[j+1]) > 0){
+                    swap(j,j+1);
                 }
             }
         }
         size++;
-        return true; // placeholder need to edit
+        return true;
     }
+    //remove fuction that romves the position you request
     @Override
     public T remove(int pos) throws Exception {
         if (pos < 0 || pos >= size) {
@@ -76,10 +83,10 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedList<T>{
         return item;
 
     }
-
+    //get function that returns the position of the elemnt you request
     @Override
     public T get(int pos) throws Exception {
-        System.out.println(size);
+        //System.out.println(size);
         if (pos < 0 || pos >= size) {
             System.out.println("error");
             throw new Exception("Invalid Position");
@@ -100,25 +107,27 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedList<T>{
     {
         SortedArrayList<Integer> al = new SortedArrayList<Integer>();
         System.out.println("Size of ArrayList " + al.size());
-        //al.get(3);
 
         al.add(1);
         al.add(3);
         al.add(2);
-        al.add(4);
         al.add(5);
+        al.add(4);
+        al.add(6);
+        al.add(7);
+        al.add(8);
+        al.add(9);
+        al.add(10);
 
         System.out.println("Initial ArrayList " + al);
         try {
 
-            //System.out.println(al.get(9));
-            //al.remove(1);
-            //al.remove("Girl");
+            System.out.println(al.get(7));
+            al.remove(1);
         }catch (Exception e){
             System.out.println(e);
         }
         System.out.println("After the Index Removal " + al.toString());
-        //System.out.println("After the Object Removal " + Arrays.toString(al));
         System.out.println("Size of ArrayList " + al.size());
     }
 
